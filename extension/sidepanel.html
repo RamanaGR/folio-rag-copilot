@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Folio Copilot</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand-lockup"><span class="brand-mark">F</span><div><p class="eyebrow">FOLIO / LOCAL</p><h1>Career copilot</h1></div></div>
+      <span id="statusDot" class="status-dot" title="Backend status"></span>
+    </header>
+    <label class="enable-row" id="enableRow"><input id="extensionEnabled" type="checkbox"><span><strong>Enable Folio</strong><small>Nothing is filled until you click Apply with Folio</small></span><b id="enableState">OFF</b></label>
+    <section class="actions global-actions"><button id="readApply" class="primary" disabled><span>-></span><strong>Apply with Folio</strong><small>Open the application and fill verified details</small></button><button id="stageForm" class="secondary" hidden>Stage form</button></section>
+    <section class="question-helper" aria-labelledby="questionHelperTitle">
+      <div class="helper-heading"><div><span class="kicker">HUMAN ASSIST</span><h2 id="questionHelperTitle">Need an answer?</h2></div><span id="helperStatus" class="helper-status">Ready</span></div>
+      <textarea id="questionInput" rows="4" placeholder="Paste an unanswered application question"></textarea>
+      <button id="askQuestion" class="helper-action">Ask Folio</button>
+      <textarea id="answerOutput" rows="6" placeholder="Your grounded answer will appear here"></textarea>
+      <button id="copyAnswer" class="copy-action" type="button">Copy answer</button>
+    </section>
+    <nav class="tabs" role="tablist" aria-label="Copilot views" hidden>
+      <button class="tab is-active" id="tabOverview" role="tab" aria-selected="true" aria-controls="overviewPanel">Overview</button>
+      <button class="tab" id="tabAssistant" role="tab" aria-selected="false" aria-controls="assistantPanel">Form assistant</button>
+      <button class="tab" id="tabProfile" role="tab" aria-selected="false" aria-controls="profilePanel">Profile</button>
+    </nav>
+    <section class="tab-panel is-visible" id="overviewPanel" role="tabpanel" aria-labelledby="tabOverview">
+      <div class="section-heading"><span class="kicker">CURRENT ROLE</span><span id="hostname" class="host-pill">No page</span></div>
+      <div class="role-card"><p id="roleTitle" class="role-title">Read a role page to begin.</p><p id="roleCompany" class="company"></p><p id="roleDescription" class="description">The visible job description will appear here.</p></div>
+      <div class="workflow-card"><div class="section-heading"><h2>Application progress</h2><span id="workflowLabel">Step 1 of 2</span></div><div class="progress-track"><span id="progressBar"></span></div><div class="steps"><span id="stepRead" class="step is-current"><b>1</b> Read &amp; open</span><span id="stepStage" class="step"><b>2</b> Stage form</span></div></div>
+    </section>
+    <section class="tab-panel" id="assistantPanel" role="tabpanel" aria-labelledby="tabAssistant" hidden>
+      <div class="section-heading"><div><span class="kicker">FORM ASSISTANT</span><h2>Human review queue</h2></div><span id="missingCount" class="count-badge">0</span></div>
+      <div class="readiness-card"><span class="readiness-icon">!</span><div><strong id="readinessTitle">Ready when you are</strong><p id="missingEmpty">Unknown fields stay empty until you answer them.</p></div></div>
+      <ul id="missingFields" class="missing-list"></ul>
+      <label class="toggle-row"><input id="autoStage" type="checkbox" checked><span><strong>Auto-stage after Apply click</strong><small>Keep the side panel open across navigation</small></span></label>
+      <div class="human-note"><strong>You stay in control</strong><p>Folio never clicks the final application submit button. Review every highlighted field before submitting.</p></div>
+    </section>
+    <section class="tab-panel" id="profilePanel" role="tabpanel" aria-labelledby="tabProfile" hidden>
+      <span class="kicker">VERIFIED PROFILE</span><h2>Data Folio can use</h2><p class="profile-intro">Values are read from your local profile and only used for fields that match known facts.</p>
+      <div class="profile-list"><div><span>Identity</span><strong>Full name, email, phone</strong></div><div><span>Location</span><strong>City, state, country</strong></div><div><span>Work logistics</span><strong>Notice period, relocation</strong></div><div><span>Experience</span><strong>Skills, projects, education</strong></div><div><span>Links</span><strong>LinkedIn, GitHub</strong></div></div>
+      <div class="human-note"><strong>Unknown means human</strong><p>Security, demographic, or other missing facts are never invented. They remain Amber for your answer and can be learned after you edit them.</p></div>
+    </section>
+    <footer><span id="backendStatus">Connecting to local backend...</span><span class="privacy">Local only</span></footer>
+  </main>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
